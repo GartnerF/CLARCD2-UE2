@@ -9,6 +9,9 @@ param repositoryUrl string = 'https://github.com/GartnerF/CLARCD2-UE2'
 param branch string = 'master'
 var appServicePlanName = toLower('AppServicePlan-${webAppName}')
 var webSiteName = toLower('gartnerapp-${webAppName}')
+
+
+// ERstellen des AppService Plans
 resource appServicePlan 'Microsoft.Web/serverfarms@2020-06-01' = {
   name: appServicePlanName
   location: location
@@ -20,6 +23,8 @@ resource appServicePlan 'Microsoft.Web/serverfarms@2020-06-01' = {
   }
   kind: 'linux'
 }
+
+// ERstellen des AppService
 resource appService 'Microsoft.Web/sites@2020-06-01' = {
   name: webSiteName
   location: location
@@ -30,6 +35,8 @@ resource appService 'Microsoft.Web/sites@2020-06-01' = {
     }
   }
 }
+
+// Erstellen der SourceControl, wird für GitHub benötigt
 resource srcControls 'Microsoft.Web/sites/sourcecontrols@2021-01-01' = {
   name: '${appService.name}/web'
   properties: {
