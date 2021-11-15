@@ -24,7 +24,7 @@ jobs:
         with:
           subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
           resourceGroupName: ${{ secrets.AZURE_RG }}
-          template: ./azuredeploy.bicep
+          template: ./architecturedeploy.bicep
           failOnStdErr: false
 
       - name: Set up Node.js version
